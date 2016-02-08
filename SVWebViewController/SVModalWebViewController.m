@@ -38,21 +38,19 @@
 - (instancetype)initWithURLRequest:(NSURLRequest *)request {
     self.webViewController = [[SVWebViewController alloc] initWithURLRequest:request];
     if (self = [super initWithRootViewController:self.webViewController]) {
-        UIBarButtonItem *doneButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone
+        UIBarButtonItem *doneButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemStop
                                                                                     target:self.webViewController
-                                                                                    action:@selector(doneButtonTapped:)];
-        
-        if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
-            self.webViewController.navigationItem.leftBarButtonItem = doneButton;
-        else
-            self.webViewController.navigationItem.rightBarButtonItem = doneButton;
+                                                                                    action:@selector(doneButtonClicked:)];
+
+        self.webViewController.navigationItem.leftBarButtonItem = doneButton;
     }
+
     return self;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:NO];
-    
+
     self.webViewController.title = self.title;
     self.navigationBar.tintColor = self.barsTintColor;
 }
