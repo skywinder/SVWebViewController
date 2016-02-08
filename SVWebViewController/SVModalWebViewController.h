@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+@class SVWebViewController;
+
 @interface SVModalWebViewController : UINavigationController
 
 - (instancetype)initWithAddress:(NSString*)urlString;
@@ -17,4 +19,5 @@
 @property (nonatomic, strong) UIColor *barsTintColor;
 @property (nonatomic, weak) id<UIWebViewDelegate> webViewDelegate;
 
+@property(nonatomic, strong) SVWebViewController *webViewController;
 @end
