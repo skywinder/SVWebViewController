@@ -11,7 +11,7 @@
 
 @interface SVModalWebViewController ()
 
-@property (nonatomic, strong) SVWebViewController *webViewController;
+@property(nonatomic, strong) SVWebViewController *webViewController;
 
 @end
 
@@ -27,7 +27,7 @@
 #pragma mark - Initialization
 
 
-- (instancetype)initWithAddress:(NSString*)urlString {
+- (instancetype)initWithAddress:(NSString *)urlString {
     return [self initWithURL:[NSURL URLWithString:urlString]];
 }
 
@@ -38,32 +38,29 @@
 - (instancetype)initWithURLRequest:(NSURLRequest *)request {
     self.webViewController = [[SVWebViewController alloc] initWithURLRequest:request];
     if (self = [super initWithRootViewController:self.webViewController]) {
-        UIBarButtonItem *doneButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone
+        UIBarButtonItem *doneButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemStop
                                                                                     target:self.webViewController
-                                                                                    action:@selector(doneButtonTapped:)];
-        
-        if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
-            self.webViewController.navigationItem.leftBarButtonItem = doneButton;
-        else
-            self.webViewController.navigationItem.rightBarButtonItem = doneButton;
+                                                                                    action:@selector(doneButtonClicked:)];
+
+        self.webViewController.navigationItem.leftBarButtonItem = doneButton;
     }
     return self;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:NO];
-    
+
     self.webViewController.title = self.title;
     self.navigationBar.tintColor = self.barsTintColor;
 }
 
 #pragma mark - Delegate
 
-- (void)setWebViewDelegate:(id<UIWebViewDelegate>)webViewDelegate {
+- (void)setWebViewDelegate:(id <UIWebViewDelegate>)webViewDelegate {
     self.webViewController.delegate = webViewDelegate;
 }
 
-- (id<UIWebViewDelegate>)webViewDelegate {
+- (id <UIWebViewDelegate>)webViewDelegate {
     return self.webViewController.delegate;
 }
 
