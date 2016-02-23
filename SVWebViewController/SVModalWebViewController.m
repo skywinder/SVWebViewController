@@ -40,7 +40,7 @@
     if (self = [super initWithRootViewController:self.webViewController]) {
         UIBarButtonItem *doneButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemStop
                                                                                     target:self.webViewController
-                                                                                    action:@selector(doneButtonClicked:)];
+                                                                                    action:@selector(doneButtonTapped:)];
 
         self.webViewController.navigationItem.leftBarButtonItem = doneButton;
     }
